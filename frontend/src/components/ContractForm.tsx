@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import { createContract } from '../services/api';
 import { ContractCategory, ContractCreate } from '../types/contract';
 import './ContractForm.css';
@@ -30,10 +31,10 @@ export function ContractForm() {
         description: '',
       });
       
-      alert('Contract created successfully!');
+      toast.success('Contract created successfully!');
     },
     onError: (error: any) => {
-      alert(`Error creating contract: ${error.response?.data?.detail || error.message}`);
+      toast.error(`Error creating contract: ${error.response?.data?.detail || error.message}`);
     },
   });
 
@@ -42,12 +43,12 @@ export function ContractForm() {
     
     // Basic validation
     if (!formData.company_name.trim()) {
-      alert('Company name is required');
+      toast.error('Company name is required');
       return;
     }
     
     if (formData.contract_value <= 0) {
-      alert('Contract value must be greater than 0');
+      toast.error('Contract value must be greater than 0');
       return;
     }
     

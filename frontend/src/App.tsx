@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 import { Dashboard } from './components/Dashboard';
 import { ContractList } from './components/ContractList';
 import { ContractForm } from './components/ContractForm';
@@ -18,6 +19,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-right" />
       <div className="App">
         <header className="app-header">
           <div className="app-header-inner">
