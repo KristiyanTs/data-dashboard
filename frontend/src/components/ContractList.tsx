@@ -25,13 +25,22 @@ export function ContractList() {
     setPage(0); // Reset to first page when filters change
   };
 
-  if (isLoading) return <div className="loading">Loading contracts...</div>;
-  if (error) return <div className="error">Error loading contracts</div>;
+  if (isLoading) {
+    return (
+      <div className="contract-list">
+        <div className="loading">
+          <span className="loading-spinner" aria-hidden />
+          Loading contracts…
+        </div>
+      </div>
+    );
+  }
+  if (error) return <div className="contract-list"><div className="error">Error loading contracts</div></div>;
   if (!data) return null;
 
   return (
     <div className="contract-list">
-      <h2>Contracts</h2>
+      <h2 className="contract-list-title">Contracts</h2>
       
       <div className="filters">
         <div className="filter-group">
@@ -69,7 +78,7 @@ export function ContractList() {
       </div>
 
       <div className="results-info">
-        Showing {data.contracts.length} of {data.total} contracts (Page {page + 1})
+        {data.total} contract{data.total !== 1 ? 's' : ''} · Page {page + 1}
       </div>
 
       <div className="table-container">
@@ -110,15 +119,17 @@ export function ContractList() {
       </div>
 
       <div className="pagination">
-        <button 
-          onClick={() => setPage(p => Math.max(0, p - 1))} 
+        <button
+          type="button"
+          onClick={() => setPage(p => Math.max(0, p - 1))}
           disabled={page === 0}
         >
           Previous
         </button>
         <span>Page {page + 1}</span>
-        <button 
-          onClick={() => setPage(p => p + 1)} 
+        <button
+          type="button"
+          onClick={() => setPage(p => p + 1)}
           disabled={!data.has_more}
         >
           Next

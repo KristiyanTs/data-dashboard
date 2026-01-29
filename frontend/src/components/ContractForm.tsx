@@ -63,8 +63,8 @@ export function ContractForm() {
 
   return (
     <div className="contract-form">
-      <h2>Create New Contract</h2>
-      
+      <h2 className="contract-form-title">New contract</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="company_name">Company Name *</label>
@@ -129,7 +129,8 @@ export function ContractForm() {
         </div>
 
         <button type="submit" disabled={mutation.isPending}>
-          {mutation.isPending ? 'Creating...' : 'Create Contract'}
+          {mutation.isPending && <span className="submit-spinner" aria-hidden />}
+          {mutation.isPending ? 'Creating…' : 'Create contract'}
         </button>
       </form>
     </div>

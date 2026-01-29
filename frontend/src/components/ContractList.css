@@ -1,141 +1,186 @@
 .contract-list {
-  padding: 20px;
+  padding: 0;
+}
+
+.contract-list-title {
+  margin: 0 0 var(--space-lg) 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
 .filters {
   display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  padding: 15px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--space-xs);
 }
 
 .filter-group label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #666;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .filter-group select,
 .filter-group input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-text);
+  min-width: 120px;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.filter-group input {
-  width: 120px;
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-muted);
 }
 
 .results-info {
-  margin-bottom: 15px;
-  color: #666;
-  font-size: 14px;
+  margin-bottom: var(--space-md);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
 }
 
 .table-container {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-  margin-bottom: 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-table {
+.contract-list table {
   width: 100%;
   border-collapse: collapse;
 }
 
-thead {
-  background: #f5f5f5;
+.contract-list thead {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
 }
 
-th {
-  padding: 12px;
+.contract-list th {
+  padding: var(--space-md) var(--space-lg);
   text-align: left;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #333;
-  border-bottom: 2px solid #ddd;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+.contract-list td {
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
 }
 
-tbody tr:hover {
-  background: #f9f9f9;
+.contract-list tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.contract-list tbody tr:hover {
+  background: var(--color-bg);
 }
 
 .no-data {
   text-align: center;
-  color: #999;
-  padding: 40px !important;
+  color: var(--color-text-muted);
+  padding: var(--space-2xl) !important;
+  font-size: 0.875rem;
 }
 
 .category-badge {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .category-badge.goods {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
 }
 
 .category-badge.services {
-  background: #f3e5f5;
-  color: #7b1fa2;
+  background: #f5e6ff;
+  color: #7c3aed;
 }
 
 .category-badge.works {
-  background: #e8f5e9;
-  color: #388e3c;
+  background: var(--color-success-muted);
+  color: var(--color-success);
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
 }
 
 .pagination button {
-  padding: 8px 16px;
-  background: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
   font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #1565c0;
+  background: var(--color-bg);
+  border-color: var(--color-border-focus);
 }
 
 .pagination button:disabled {
-  background: #ccc;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .pagination span {
-  font-weight: 500;
-  color: #333;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.contract-list .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xl);
+  color: var(--color-text-muted);
+}
+
+.contract-list .error {
+  margin: 0;
 }

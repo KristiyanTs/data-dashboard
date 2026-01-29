@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Dashboard } from './components/Dashboard';
 import { ContractList } from './components/ContractList';
@@ -14,42 +15,43 @@ const queryClient = new QueryClient({
   },
 });
 
-type Tab = 'dashboard' | 'list' | 'create';
-
 function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('dashboard');
-
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
         <header className="app-header">
-          <h1>Procurement Data Dashboard</h1>
-          <nav className="tabs">
-            <button 
-              className={activeTab === 'dashboard' ? 'active' : ''} 
-              onClick={() => setActiveTab('dashboard')}
-            >
-              Dashboard
-            </button>
-            <button 
-              className={activeTab === 'list' ? 'active' : ''} 
-              onClick={() => setActiveTab('list')}
-            >
-              Contracts
-            </button>
-            <button 
-              className={activeTab === 'create' ? 'active' : ''} 
-              onClick={() => setActiveTab('create')}
-            >
-              Create Contract
-            </button>
-          </nav>
+          <div className="app-header-inner">
+            <h1 className="app-logo">Procurement Dashboard</h1>
+            <nav className="app-nav" aria-label="Main">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Dashboard
+              </NavLink>
+              <NavLink
+                to="/contracts"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Contracts
+              </NavLink>
+              <NavLink
+                to="/contracts/new"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                New contract
+              </NavLink>
+            </nav>
+          </div>
         </header>
 
         <main className="app-content">
-          {activeTab === 'dashboard' && <Dashboard />}
-          {activeTab === 'list' && <ContractList />}
-          {activeTab === 'create' && <ContractForm />}
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/contracts" element={<ContractList />} />
+            <Route path="/contracts/new" element={<ContractForm />} />
+          </Routes>
         </main>
       </div>
     </QueryClientProvider>
