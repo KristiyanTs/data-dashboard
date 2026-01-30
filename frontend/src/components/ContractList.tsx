@@ -129,7 +129,9 @@ export function ContractList() {
                           {contract.category}
                         </span>
                       </td>
-                      <td>{contract.description || '-'}</td>
+                      <td className="description-cell" title={contract.description || undefined}>
+                        {contract.description || '-'}
+                      </td>
                     </tr>
                   ))
                 )}

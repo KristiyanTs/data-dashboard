@@ -101,6 +101,13 @@
   border-bottom: none;
 }
 
+.contract-list td.description-cell {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .contract-list tbody tr.clickable-row {
   cursor: pointer;
   transition: background var(--transition), transform 0.1s ease;
