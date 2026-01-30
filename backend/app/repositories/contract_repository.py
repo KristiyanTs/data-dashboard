@@ -57,6 +57,8 @@ class ContractRepository:
         data = dict(contract_data)
         if "category" in data and isinstance(data["category"], str):
             data["category"] = ContractCategoryEnum(data["category"])
+        if "contract_date" in data and isinstance(data["contract_date"], str):
+            data["contract_date"] = datetime.strptime(data["contract_date"], "%Y-%m-%d")
         contract = DBContract(**data)
         self.db.add(contract)
         self.db.commit()

@@ -9,7 +9,7 @@ This mini-project showcases ALL the key skills for your Bizportal interview:
 
 ✅ **FastAPI backend** with Service-Repository pattern  
 ✅ **React frontend** with data visualization  
-✅ **Comprehensive testing** (backend + frontend)  
+✅ **Comprehensive testing** (backend + frontend) - **COMPLETE**  
 ✅ **Large dataset handling** strategies  
 ✅ **RESTful API design**  
 ✅ **Modern best practices**  
@@ -109,6 +109,74 @@ npm start
 ```
 
 App will be available at: http://localhost:3000
+
+---
+
+## 🧪 Testing
+
+### Backend Tests
+
+The backend has comprehensive test coverage including unit tests and integration tests.
+
+```bash
+cd backend
+
+# Install test dependencies (if not already installed)
+pip install -r requirements.txt
+
+# Run all tests
+pytest
+
+# Run with coverage report
+pytest --cov=app --cov-report=term-missing
+
+# Run specific test file
+pytest tests/test_repository.py
+pytest tests/test_service.py
+pytest tests/test_api.py
+```
+
+**Test Coverage:**
+- ✅ Repository layer (data access)
+- ✅ Service layer (business logic)
+- ✅ API endpoints (integration tests)
+- ✅ Validation and error handling
+- ✅ Filtering and pagination
+- ✅ Statistics calculation
+
+See `backend/README_TESTS.md` for detailed testing documentation.
+
+### Frontend Tests
+
+The frontend has comprehensive component and service tests.
+
+```bash
+cd frontend
+
+# Run all tests
+npm test
+
+# Run tests once (CI mode)
+npm test -- --watchAll=false
+
+# Run with coverage
+npm test -- --coverage --watchAll=false
+
+# Run specific test
+npm test ContractList
+npm test ContractForm
+npm test Dashboard
+```
+
+**Test Coverage:**
+- ✅ ContractList component (filtering, pagination)
+- ✅ ContractForm component (validation, submission)
+- ✅ Dashboard component (statistics, charts)
+- ✅ API service (HTTP requests)
+- ✅ Error handling and edge cases
+- ✅ User interactions
+
+See `frontend/README_TESTS.md` for detailed testing documentation.
 
 ---
 
