@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchContracts } from '../services/api';
-import { ContractCategory } from '../types/contract';
+import { Contract, ContractCategory } from '../types/contract';
+import { formatDescriptionText } from '../utils/formatDescription';
 import './ContractList.css';
 
 const FILTER_DEBOUNCE_MS = 400;
 
 export function ContractList() {
   const [page, setPage] = useState(0);
+  const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const [filters, setFilters] = useState<{
     category?: string;
     min_value?: number;
@@ -113,7 +115,11 @@ export function ContractList() {
                   </tr>
                 ) : (
                   data.contracts.map((contract) => (
-                    <tr key={contract.id}>
+                    <tr 
+                      key={contract.id} 
+                      className="clickable-row"
+                      onClick={() => setSelectedContract(contract)}
+                    >
                       <td>{contract.id}</td>
                       <td>{contract.company_name}</td>
                       <td>${contract.contract_value.toLocaleString()}</td>
@@ -149,6 +155,111 @@ export function ContractList() {
             </button>
           </div>
         </>
+      )}
+
+      {selectedContract && (
+        <div className="modal-overlay" onClick={() => setSelectedContract(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Contract Details</h3>
+              <button 
+                className="modal-close" 
+                onClick={() => setSelectedContract(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="detail-section">
+                <div className="detail-row">
+                  <span className="detail-label">ID</span>
+                  <span className="detail-value">{selectedContract.id}</span>
+                </div>
+                
+                <div className="detail-row">
+                  <span className="detail-label">Company Name</span>
+                  <span className="detail-value">{selectedContract.company_name}</span>
+                </div>
+                
+                <div className="detail-row">
+                  <span className="detail-label">Contract Value</span>
+                  <span className="detail-value detail-value-highlight">
+                    ${selectedContract.contract_value.toLocaleString()}
+                  </span>
+                </div>
+                
+                <div className="detail-row">
+                  <span className="detail-label">Contract Date</span>
+                  <span className="detail-value">
+                    {new Date(selectedContract.contract_date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+                
+                <div className="detail-row">
+                  <span className="detail-label">Category</span>
+                  <span className="detail-value">
+                    <span className={`category-badge ${selectedContract.category}`}>
+                      {selectedContract.category}
+                    </span>
+                  </span>
+                </div>
+                
+                {selectedContract.description && (
+                  <div className="detail-row detail-row-full">
+                    <span className="detail-label">Description</span>
+                    <div className="detail-value description-formatted">
+                      {formatDescriptionText(selectedContract.description)}
+                    </div>
+                  </div>
+                )}
+                
+                {selectedContract.source && (
+                  <div className="detail-row">
+                    <span className="detail-label">Source</span>
+                    <span className="detail-value detail-value-source">
+                      {selectedContract.source}
+                    </span>
+                  </div>
+                )}
+                
+                {selectedContract.external_id && (
+                  <div className="detail-row">
+                    <span className="detail-label">External ID</span>
+                    <span className="detail-value detail-value-code">
+                      {selectedContract.external_id}
+                    </span>
+                  </div>
+                )}
+                
+                {selectedContract.country && (
+                  <div className="detail-row">
+                    <span className="detail-label">Country</span>
+                    <span className="detail-value">{selectedContract.country}</span>
+                  </div>
+                )}
+                
+                <div className="detail-row">
+                  <span className="detail-label">Created At</span>
+                  <span className="detail-value detail-value-muted">
+                    {new Date(selectedContract.created_at).toLocaleString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

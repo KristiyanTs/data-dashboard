@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { Dashboard } from './components/Dashboard';
 import { ContractList } from './components/ContractList';
 import { ContractForm } from './components/ContractForm';
+import { Scraper } from './components/Scraper';
 import './App.css';
 
 const queryClient = new QueryClient({
@@ -39,6 +40,12 @@ function App() {
                 Contracts
               </NavLink>
               <NavLink
+                to="/scraper"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Scraper
+              </NavLink>
+              <NavLink
                 to="/contracts/new"
                 className={({ isActive }) => (isActive ? 'active' : '')}
               >
@@ -52,6 +59,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/contracts" element={<ContractList />} />
+            <Route path="/scraper" element={<Scraper />} />
             <Route path="/contracts/new" element={<ContractForm />} />
           </Routes>
         </main>

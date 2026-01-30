@@ -13,9 +13,26 @@ This mini-project showcases ALL the key skills for your Bizportal interview:
 ✅ **Large dataset handling** strategies  
 ✅ **RESTful API design**  
 ✅ **Modern best practices**  
+✅ **🌐 SMART SCRAPER** - AI-powered procurement data collection - **NEW!**
 
-**Time to build**: 3-4 hours  
+**Time to build**: 3-4 hours (+ 2 hours for scraper)  
 **Perfect for**: Showing in interview or as take-home test
+
+### 🚀 NEW: Smart Procurement Scraper
+
+**THE KILLER FEATURE** - An intelligent web scraper that collects real procurement contracts from:
+- 🇪🇺 TED (EU Tenders Electronic Daily)
+- 🇺🇸 SAM.gov (US Federal Procurement)
+- 🇬🇧 UK Contracts Finder
+
+**Why it's impressive:**
+- API-first architecture (more reliable than HTML parsing)
+- Parallel scraping (all sources simultaneously)
+- Automatic duplicate detection
+- Production-ready error handling
+- Real-time UI with live results
+
+See [SCRAPER_FEATURE.md](SCRAPER_FEATURE.md) for full documentation.
 
 ---
 
@@ -90,8 +107,11 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Generate sample data (1000 contracts)
-python scripts/generate_data.py
+# If you have an existing database, run migration
+python migrate_db.py
+
+# Generate sample data (1000 contracts) - OPTIONAL
+# python scripts/generate_data.py
 
 # Run server
 uvicorn app.main:app --reload
@@ -99,6 +119,11 @@ uvicorn app.main:app --reload
 
 API will be available at: http://localhost:8000
 Swagger docs at: http://localhost:8000/docs
+
+**🌐 NEW: Try the Smart Scraper!**
+- Navigate to http://localhost:8000/docs
+- Try the `/scraper/scrape/live` endpoint
+- Or use the frontend Scraper tab
 
 ### Frontend Setup
 

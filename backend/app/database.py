@@ -30,6 +30,11 @@ class Contract(Base):
     category = Column(Enum(ContractCategoryEnum), nullable=False, index=True)
     description = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Scraper-related fields
+    source = Column(String(100), nullable=True, index=True)  # e.g., "TED_EU", "SAM_GOV"
+    external_id = Column(String(200), nullable=True, index=True)  # ID from source system
+    country = Column(String(3), nullable=True, index=True)  # ISO country code
 
 
 def get_db():

@@ -11,6 +11,9 @@ export interface Contract {
   contract_date: string;
   category: ContractCategory;
   description?: string;
+  source?: string;
+  external_id?: string;
+  country?: string;
   created_at: string;
 }
 
