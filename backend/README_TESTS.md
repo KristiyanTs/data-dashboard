@@ -19,11 +19,17 @@ cd backend
 pip install -r requirements.txt
 ```
 
+If `pytest` is not found, use a virtual environment (`python3 -m venv venv` then `source venv/bin/activate`) or run tests with `python3 -m pytest` instead of `pytest`. On macOS, use `python3` (the `python` command is often not available).
+
 ## Running Tests
 
 ### Run all tests
 ```bash
 pytest
+```
+Or if `pytest` is not on your PATH:
+```bash
+python3 -m pytest
 ```
 
 ### Run with coverage report
