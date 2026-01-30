@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { Contract, ContractCreate, ContractList, Statistics } from '../types/contract';
 
-// In development, use relative URLs so the dev server proxies to the backend (see "proxy" in package.json)
-const API_BASE_URL = process.env.NODE_ENV === 'development' ? '' : 'http://localhost:8000';
+// In development, use /api prefix which gets proxied to backend (see setupProxy.js)
+// In production, use the backend URL directly
+const API_BASE_URL = process.env.NODE_ENV === 'development' ? '/api' : 'http://localhost:8000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
